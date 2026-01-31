@@ -10,7 +10,7 @@ export default define.page(function App({ Component }) {
       </head>
       <body>
         <Component />
-      </body>
+			</body>
     </html>
   );
 });

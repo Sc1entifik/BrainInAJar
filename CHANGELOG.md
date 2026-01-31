@@ -1,0 +1,4 @@
+- **v-0.0.1**
+    - Initial Commit.
+    - Added CHANGELOG.md
+    - Made some styling rules.
