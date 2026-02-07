@@ -1,26 +1,21 @@
-import { useSignal } from "@preact/signals";
-import { Head } from "fresh/runtime";
+import { Head, Partial } from "fresh/runtime";
 import { define } from "../utils.ts";
-import Counter from "../islands/Counter.tsx";
+import ChatForm from "../components/ChatForm.tsx";
 
-export default define.page(function Home(ctx) {
-  const count = useSignal(3);
 
-  console.log("Shared value " + ctx.state.shared);
-
+export default define.page(function Home(_ctx) {
   return (
-    <div class="px-4 py-8 mx-auto bg-bubble-gum-blue min-h-screen">
+    <div class="px-4 py-8 mx-auto bg-bubble-gum-blue h-fit">
       <Head>
-        <title>Fresh counter</title>
+        <title>Brain In A Jar</title>
       </Head>
-      <div class="max-w-screen-3x mx-auto flex flex-col items-center justify-center">
-        <h1 class="text-4xl text-brain-pink font-bold">Brain In A Jar</h1>
-        <p class="my-4 text-bubble-gum-text">
-          Try updating this message in the
-          <code class="mx-2">./routes/index.tsx</code> file, and refresh.
-        </p>
-        <Counter count={count} />
-      </div>
+			<h1 class="text-4xl text-brain-pink font-bold text-center">Brain In A Jar</h1>
+			<div class="mx-auto flex flex-col items-center w-[65dvw] h-fit min-h-[90dvh] bg-black py-4">
+				<div class="mx-2 flex flex-col">
+					<Partial name="chatResponse">{}</Partial>
+					<Partial name="chatResponseForm"><ChatForm url="/conversation" /></Partial>
+				</div>
+			</div>
     </div>
   );
 });

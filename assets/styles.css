@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-	--color-bubble-gum-blue: hsl(205, 88%, 50%);
-	--color-brain-pink: hsl(325, 100%, 68%);
-	--color-bubble-gum-text: hsl(205, 100%, 14%);
+	--color-bubble-gum-blue: hsl(205, 88%, 55%);
+	--color-brain-pink: hsl(325, 100%, 58%);
+	--color-bubble-gum-text: hsl(205, 100%, 78%);
+	--color-brain-text: hsl(325, 100%, 78%);
 }
 
 .fresh-gradient {
