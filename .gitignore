@@ -16,5 +16,8 @@ _fresh/
 node_modules/
 vendor/
 
+# files and folders to be ignored
+data/
+
 #psuedocode.txt
 pseudocode.txt
