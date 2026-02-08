@@ -1,13 +1,13 @@
+import { FileMap } from "../enums/fileMap.ts";
+import { UserBrains } from "../types/brain.ts";
 import { define } from "../utils.ts";
 
-interface Brain {
-	context: string;
-	user: string;
-	agent: string;
-	vectorStoreId?: string;
-}
 
-export default define.page(() => {
+export default define.page(async () => {
+	const userBrains: UserBrains = JSON.parse(await Deno.readTextFile(FileMap.BRAIN));
+	const brainList = Object.keys(userBrains);
+
+
 	return (
 		<main>
 			<h1>Create A New Brain!</h1>
