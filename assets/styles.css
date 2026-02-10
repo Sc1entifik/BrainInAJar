@@ -1,6 +1,69 @@
 @import "tailwindcss";
 
+@font-face {
+	font-family: "CherryBomb";
+	src: url("/fonts/Cherry_Bomb_One/CherryBombOne-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Coiny";
+	src: url("/fonts/Coiny/Coiny-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Matemasie";
+	src: url("/fonts/Matemasie/Matemasie-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Modak";
+	src: url("/fonts/Modak/Modak-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "RubikBubbles";
+	src: url("/fonts/Rubik_Bubbles/RubikBubbles-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face{
+	font-family: "ChakraPetch";
+	src: url("/fonts/Chakra_Petch/ChakraPetch-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face{
+	font-family: "Iceland";
+	src: url("/fonts/Iceland/Iceland-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face{
+	font-family: "Quantico";
+	src: url("/fonts/Quantico/Quantico-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
+@font-face{
+	font-family: "RobotoFlex";
+	src: url("/fonts/Roboto_Flex/RobotoFlex.woff2") format("woff2");
+	font-display: swap;
+}
+
 @theme {
+	--font-cherrybomb: "CherryBomb", sans-serif;
+	--font-coiny: "Coiny", sans-serif;
+	--font-matemasie: "Matemasie", sans-serif;
+	--font-modak: "Modak", sans-serif;
+	--font-logo: "RubikBubbles", sans-serif;
+	--font-conversation: "Iceland", sans-serif;
+	--font-chakra: "ChakraPetch", sans-serif;
+	--font-quantico: "Quantico", sans-serif;
+	--font-robotoflex: "RobotoFlex", sans-serif;
 	--color-bubble-gum-blue: hsl(205, 88%, 55%);
 	--color-brain-pink: hsl(325, 100%, 58%);
 	--color-bubble-gum-text: hsl(205, 100%, 78%);

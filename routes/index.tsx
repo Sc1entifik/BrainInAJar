@@ -9,7 +9,7 @@ export default define.page(function Home(_ctx) {
       <Head>
         <title>Brain In A Jar</title>
       </Head>
-			<h1 class="text-4xl text-brain-pink font-bold text-center">Brain In A Jar</h1>
+			<h1 class="text-8xl text-brain-pink font-bold text-center font-logo">Brain In A Jar</h1>
 			<div class="mx-auto flex flex-col items-center w-[65dvw] h-fit min-h-[90dvh] bg-black py-4">
 				<div class="mx-2 flex flex-col">
 					<Partial name="chatResponse">{}</Partial>

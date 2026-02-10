@@ -12,7 +12,7 @@ export default define.page((ctx) => {
 	return (
 		<div>
 			<Partial name="chatResponse" mode="append">
-				<div class="max-w-[50dvw]">
+				<div class="max-w-[50dvw] font-conversation text-2xl">
 					<Conversation userMessage={userMessage} agentMessage={agentMessage}/>
 				</div>
 			</Partial>
