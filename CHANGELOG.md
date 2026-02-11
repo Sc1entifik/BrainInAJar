@@ -18,3 +18,6 @@
 
 - **v-0.1.7**
     - Added fonts for logo and conversation.
+    - Had ChatGPT make me an awesome logo of a brain smiling in a jar!
+    - Converted logo to svg format.
+    - Favicon is the same file as the logo.

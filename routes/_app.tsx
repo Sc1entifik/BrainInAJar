@@ -6,7 +6,8 @@ export default define.page(function App({ Component }) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>FreshDemo</title>
+				<link rel="icon" href="/brainCropped.svg" type="image/svg+xml" />
+        <title>Brain In A Jar</title>
       </head>
       <body f-client-nav>
         <Component />
