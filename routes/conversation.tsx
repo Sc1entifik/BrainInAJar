@@ -2,6 +2,7 @@ import { Partial } from "fresh/runtime";
 import { define } from "../utils.ts";
 import Conversation from "../components/Conversation.tsx";
 import ChatForm from "../components/ChatForm.tsx";
+import { SiteMap } from "../enums/siteMap.ts";
 
 export default define.page((ctx) => {
 	const userMessage = ctx.url.searchParams.get("userMessage") as string;
@@ -16,7 +17,7 @@ export default define.page((ctx) => {
 					<Conversation userMessage={userMessage} agentMessage={agentMessage}/>
 				</div>
 			</Partial>
-			<Partial name="chatResponseForm"><ChatForm url="/conversation" key={formKey}/></Partial>
+			<Partial name="chatResponseForm"><ChatForm url={SiteMap.CONVERSATION} key={formKey}/></Partial>
 		</div>
 	)
 })

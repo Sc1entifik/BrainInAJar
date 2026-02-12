@@ -21,3 +21,13 @@
     - Had ChatGPT make me an awesome logo of a brain smiling in a jar!
     - Converted logo to svg format.
     - Favicon is the same file as the logo.
+
+- **v-0.2.0**
+    - Added talkToABrain.tsx route to move the brain conversation page over to it's own route.
+    - Added BrainInAJarLogo.tsx which renders the Logo and the project name.
+    - Added MainMenuLinks.tsx that has the links to different parts of the page.
+    - Added main menu landing page.
+    - Added new routes to siteMap.ts
+    - Added new files to fileMap.ts
+    - General clean up and refactoring.
+
