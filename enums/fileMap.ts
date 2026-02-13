@@ -1,4 +1,7 @@
-export enum FileMap {
-	BRAIN = "./data/brain.json",
-	LOGO = "/brainLogo.svg",
+const root = new URL("../", import.meta.url).pathname;
+
+export const FileMap = {
+	BRAIN: `${root}/data/brain.json`,
+	BRAIN_FOOD: `${root}/data/brainFood`,
+	LOGO: "/brainLogo.svg",
 }

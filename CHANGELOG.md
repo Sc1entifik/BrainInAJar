@@ -31,3 +31,10 @@
     - Added new files to fileMap.ts
     - General clean up and refactoring.
 
+- **v-0.2.5**
+    - Added createBrain.tsx route.
+    - Added POST handler at createBrain.tsx route.
+    - Added CreateBrainForm.tsx island.
+    - data/brain.json now holds brains and can hold conversations.
+    - Created brainFood folder in data folder which will hold all files that will be added to vector stores from the open ai api.
+    - Added createBrainsFields enum to store all the fields for the CreateBrainForm island and the POST handler at createBrain.tsx.

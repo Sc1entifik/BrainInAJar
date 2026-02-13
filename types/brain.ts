@@ -1,7 +1,9 @@
 export interface Brain {
 	context: string;
-	user: string;
-	agent: string;
+	model: string;
+	user: string[];
+	agent: string[];
+	reasoning?: string;
 	vectorStoreId?: string;
 }
 
