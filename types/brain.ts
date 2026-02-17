@@ -11,5 +11,3 @@ export interface Brain {
 export interface UserBrains {
 	[brainName: string]: Brain
 }
-
-

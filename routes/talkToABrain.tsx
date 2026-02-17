@@ -3,8 +3,14 @@ import BrainLogo from "../components/BrainInAJarLogo.tsx";
 import { define } from "../utils.ts";
 import ChatForm from "../components/ChatForm.tsx";
 import { SiteMap } from "../enums/siteMap.ts";
+import getCookieValue from "../utils/server/getCookieValue.ts";
 
-export default define.page(function TalkToABrain(_ctx){
+export default define.page(function TalkToABrain(ctx){
+	const cookies = ctx.req.headers.get("cookie") || "";
+	const brainName = getCookieValue("brainName", cookies);
+	console.log(brainName);
+	
+
 	return (
 		<div class="px-4 py-8 mx-auto h-fit">
 			<BrainLogo />

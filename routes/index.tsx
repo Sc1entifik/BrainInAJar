@@ -1,7 +1,6 @@
 import { define } from "../utils.ts";
 import BrainLogo from "../components/BrainInAJarLogo.tsx";
 import MainMenuLinks from "../components/MainMenuLinks.tsx";
-import FileList from "../components/FileList.tsx";
 
 
 export default define.page(function Home(_ctx) {

@@ -6,7 +6,6 @@ import { SiteMap } from "../enums/siteMap.ts";
 
 export default define.page((ctx) => {
 	const userMessage = ctx.url.searchParams.get("userMessage") as string;
-	console.log(typeof userMessage)
 	const agentMessage = "Let's watch this partial go through!";
 	const formKey = crypto.randomUUID();
 

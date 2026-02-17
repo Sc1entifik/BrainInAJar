@@ -1,0 +1,2 @@
+1. Import "@std/http/cookie" not a dependency and not in import map from "file:///home/scientifik/Coding/Javascript/BrainInAJar/routes/selectBrain.tsx"
+     hint: If you want to use the JSR package, try running `deno add jsr:@std/http/cookie` [resolver-error]mport { setCookie } from "@std/http/cookie";

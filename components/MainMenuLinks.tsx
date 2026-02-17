@@ -1,7 +1,7 @@
 import { SiteMap } from "../enums/siteMap.ts";
 
 export default function MainMenuLinks() {
-	const linkAndDescription: [string, string][] = [[SiteMap.CREATE_BRAIN,"CREATE A BRAIN"], [SiteMap.FEED_BRAIN,"FEED A BRAIN"], [SiteMap.TALK_TO_A_BRAIN, "TALK TO A BRAIN"], [SiteMap.TUTORIAL, "TUTORIAL"]].map((x, y) =>  
+	const linkAndDescription: [string, string][] = [[SiteMap.CREATE_BRAIN,"CREATE A BRAIN"], [SiteMap.SELECT_A_BRAIN, "SELECT A BRAIN"], [SiteMap.FEED_BRAIN,"FEED A BRAIN"], [SiteMap.TALK_TO_A_BRAIN, "TALK TO A BRAIN"], [SiteMap.TUTORIAL, "TUTORIAL"]].map((x, y) =>  
 			<a
 				href={x[0]} 
 				key={y} 
