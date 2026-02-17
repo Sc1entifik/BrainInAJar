@@ -38,3 +38,9 @@
     - data/brain.json now holds brains and can hold conversations.
     - Created brainFood folder in data folder which will hold all files that will be added to vector stores from the open ai api.
     - Added createBrainsFields enum to store all the fields for the CreateBrainForm island and the POST handler at createBrain.tsx.
+
+- **v-0.2.7**
+    - Added selectBrain.tsx route
+    - Added BrainSelectionForm.tsx so users can click on and select brains.
+    - Added brainSelectionFields.ts enum so the Post handler and the brain selection forms will by synced.
+    - Added utils/server/getCookieValue.ts to get cookie values by passing in the cookie name and the cookie header.
