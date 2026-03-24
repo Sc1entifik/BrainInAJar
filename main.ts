@@ -1,3 +1,4 @@
+import "std/dotenv/load";
 import { App, staticFiles } from "fresh";
 import { define, type State } from "./utils.ts";
 
@@ -10,7 +11,6 @@ app.use(async (ctx) => {
   ctx.state.shared = "hello";
   return await ctx.next();
 });
-
 
 // this can also be defined via a file. feel free to delete this!
 const exampleLoggerMiddleware = define.middleware((ctx) => {

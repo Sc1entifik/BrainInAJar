@@ -1,3 +1,3 @@
 export enum BrainSelectionFields {
-	BRAIN = "brain",
+  BRAIN = "brain",
 }
