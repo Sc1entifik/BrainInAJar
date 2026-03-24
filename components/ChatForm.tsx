@@ -12,14 +12,14 @@ export default function ChatForm(
 ) {
   return (
     <form
-      class="flex items-center gap-3 my-3 w-full"
+      class="flex items-end gap-3 w-full"
       method="POST"
       action={url}
       f-partial={url}
     >
       <input
         type="hidden"
-        name={ConversationFields.ACTION}
+        name={ConversationFields.INTENT}
         value={ConversationActions.SEND_MESSAGE}
       />
       <input
@@ -29,7 +29,7 @@ export default function ChatForm(
       />
       <input
         name={ConversationFields.USER_MESSAGE}
-        class="bg-white font-quantico text-black text-lg px-3 py-2 rounded-xl flex-1"
+        class="chat-composer-input"
         placeholder="Ask your brain something..."
         defaultValue={initialMessage}
         autofocus
@@ -37,7 +37,7 @@ export default function ChatForm(
       />
       <button
         type="submit"
-        class="font-cherrybomb text-2xl text-brain-text hover:text-brain-pink cursor-pointer"
+        class="chat-send-button"
       >
         SEND
       </button>

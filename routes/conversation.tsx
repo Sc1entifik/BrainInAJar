@@ -27,6 +27,8 @@ interface ConversationRouteData {
     userMessage: string;
     agentMessage: string;
     responseId: string | null;
+    userCreatedAt: string;
+    agentCreatedAt: string;
   }>;
 }
 
@@ -58,7 +60,7 @@ export const handler = define.handlers<ConversationRouteData>({
   async POST(ctx) {
     const form = await ctx.req.formData();
     const brainName = form.get(ConversationFields.BRAIN_NAME);
-    const action = form.get(ConversationFields.ACTION);
+    const intent = form.get(ConversationFields.INTENT);
 
     if (typeof brainName !== "string" || brainName === "") {
       return page(
@@ -79,7 +81,7 @@ export const handler = define.handlers<ConversationRouteData>({
       );
     }
 
-    if (action === ConversationActions.DELETE_TURN) {
+    if (intent === ConversationActions.DELETE_TURN) {
       const turnId = form.get(ConversationFields.TURN_ID);
 
       if (typeof turnId === "string" && turnId !== "") {
@@ -130,22 +132,29 @@ export default define.page<typeof handler>(({ data }) => {
   return (
     <div>
       <Partial name="chatResponse">
-        <div class="max-w-[50dvw] font-conversation text-2xl">
+        <div class="chat-history">
           {data.errorMessage
-            ? <p class="text-amber-200 pb-4">{data.errorMessage}</p>
+            ? <p class="chat-system-message">{data.errorMessage}</p>
             : null}
           {data.turns.length === 0
             ? (
-              <p class="text-brain-text">
-                Start the conversation and your chat history will stay saved in
-                `brain.json`.
-              </p>
+              <div class="chat-empty-state">
+                <p class="font-cherrybomb text-4xl text-slate-800">
+                  Start Chatting
+                </p>
+                <p class="font-chakra text-lg md:text-xl text-slate-700">
+                  Your messages stay saved in `brain.json`, and the layout now
+                  behaves like a real messenger thread.
+                </p>
+              </div>
             )
             : data.turns.map((turn) => (
               <Conversation
                 key={turn.turnId}
                 userMessage={turn.userMessage}
                 agentMessage={turn.agentMessage}
+                userCreatedAt={turn.userCreatedAt}
+                agentCreatedAt={turn.agentCreatedAt}
                 brainName={data.brainName}
                 turnId={turn.turnId}
               />

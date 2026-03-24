@@ -1,26 +1,42 @@
 import type { Brain } from "../../types/brain.ts";
 import { createOpenAiClient } from "./openAiClient.ts";
+import {
+  getBrainInstructions,
+  getConversationHistoryForModel,
+  getLatestResponseId,
+} from "./brainStore.ts";
 
 function supportsReasoning(model: string): boolean {
   return model.startsWith("gpt-5");
 }
 
-function buildInputMessages(brain: Brain, userMessage: string) {
-  return [
-    ...brain.input.map((message) => ({
-      role: message.role,
-      content: message.content,
-      type: "message" as const,
-      ...(message.role === "assistant"
-        ? { phase: message.phase || "final_answer" }
-        : {}),
-    })),
-    {
-      role: "user" as const,
-      content: userMessage,
-      type: "message" as const,
-    },
-  ];
+function createUserInputMessage(userMessage: string) {
+  return {
+    role: "user" as const,
+    content: userMessage,
+    type: "message" as const,
+  };
+}
+
+function buildResponseRequest(brain: Brain, userMessage: string) {
+  const previousResponseId = getLatestResponseId(brain);
+
+  return {
+    model: brain.model,
+    input: previousResponseId ? [createUserInputMessage(userMessage)] : [
+      ...getConversationHistoryForModel(brain),
+      createUserInputMessage(userMessage),
+    ],
+    instructions: getBrainInstructions(brain),
+    previous_response_id: previousResponseId,
+    store: true,
+    truncation: "auto" as const,
+    tools: brain.tools.filter((tool) => tool.vector_store_ids.length > 0),
+    reasoning:
+      supportsReasoning(brain.model) && brain.reasoning.effort !== "none"
+        ? { effort: brain.reasoning.effort }
+        : undefined,
+  };
 }
 
 function extractAssistantMessage(response: {
@@ -61,17 +77,25 @@ export async function chatWithBrain(
   responseId: string | null;
 }> {
   const client = createOpenAiClient();
-  const response = await client.responses.create({
-    model: brain.model,
-    input: buildInputMessages(brain, userMessage),
-    store: false,
-    truncation: "auto",
-    tools: brain.tools.filter((tool) => tool.vector_store_ids.length > 0),
-    reasoning:
-      supportsReasoning(brain.model) && brain.reasoning.effort !== "none"
-        ? { effort: brain.reasoning.effort }
-        : undefined,
-  });
+  const request = buildResponseRequest(brain, userMessage);
+  let response;
+
+  if (request.previous_response_id) {
+    try {
+      response = await client.responses.create(request);
+    } catch {
+      response = await client.responses.create({
+        ...request,
+        input: [
+          ...getConversationHistoryForModel(brain),
+          createUserInputMessage(userMessage),
+        ],
+        previous_response_id: null,
+      });
+    }
+  } else {
+    response = await client.responses.create(request);
+  }
 
   const assistantMessage = extractAssistantMessage(response) ||
     "The model returned an empty response.";

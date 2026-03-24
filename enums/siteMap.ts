@@ -1,5 +1,6 @@
 export enum SiteMap {
   HOME = "/",
+  API_KEY = "/apiKey",
   SELECT_A_BRAIN = "/selectBrain",
   TALK_TO_A_BRAIN = "/talkToABrain",
   CONVERSATION = "/conversation",

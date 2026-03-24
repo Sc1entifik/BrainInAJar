@@ -235,8 +235,50 @@ export function appendConversationTurn(
   );
 }
 
+export function invalidateStoredResponseIds(brain: Brain): void {
+  brain.input = brain.input.map((message) =>
+    message.role === "assistant" ? { ...message, responseId: null } : message
+  );
+}
+
+export function getBrainInstructions(brain: Brain): string {
+  return brain.input.find((message) => message.role === "system")?.content ||
+    DEFAULT_SYSTEM_PROMPT;
+}
+
+export function getLatestResponseId(brain: Brain): string | null {
+  for (let index = brain.input.length - 1; index >= 0; index--) {
+    const message = brain.input[index];
+
+    if (message.role === "assistant" && message.responseId) {
+      return message.responseId;
+    }
+  }
+
+  return null;
+}
+
+export function getConversationHistoryForModel(brain: Brain): Array<{
+  role: "user" | "assistant";
+  content: string;
+  type: "message";
+  phase?: "final_answer";
+}> {
+  return brain.input
+    .filter((message) => message.role !== "system")
+    .map((message) => ({
+      role: message.role as "user" | "assistant",
+      content: message.content,
+      type: "message" as const,
+      ...(message.role === "assistant"
+        ? { phase: message.phase || "final_answer" }
+        : {}),
+    }));
+}
+
 export function deleteConversationTurn(brain: Brain, turnId: string): void {
   brain.input = brain.input.filter((message) => message.turnId !== turnId);
+  invalidateStoredResponseIds(brain);
 }
 
 export function getConversationTurns(brain: Brain): Array<{
@@ -244,18 +286,24 @@ export function getConversationTurns(brain: Brain): Array<{
   userMessage: string;
   agentMessage: string;
   responseId: string | null;
+  userCreatedAt: string;
+  agentCreatedAt: string;
 }> {
   const turns: Array<{
     turnId: string;
     userMessage: string;
     agentMessage: string;
     responseId: string | null;
+    userCreatedAt: string;
+    agentCreatedAt: string;
   }> = [];
   const turnMap = new Map<string, {
     turnId: string;
     userMessage: string;
     agentMessage: string;
     responseId: string | null;
+    userCreatedAt: string;
+    agentCreatedAt: string;
   }>();
 
   for (const message of brain.input) {
@@ -268,6 +316,8 @@ export function getConversationTurns(brain: Brain): Array<{
       userMessage: "",
       agentMessage: "",
       responseId: null,
+      userCreatedAt: "",
+      agentCreatedAt: "",
     };
 
     if (!turnMap.has(message.turnId)) {
@@ -277,11 +327,13 @@ export function getConversationTurns(brain: Brain): Array<{
 
     if (message.role === "user") {
       existingTurn.userMessage = message.content;
+      existingTurn.userCreatedAt = message.createdAt;
     }
 
     if (message.role === "assistant") {
       existingTurn.agentMessage = message.content;
       existingTurn.responseId = message.responseId ?? null;
+      existingTurn.agentCreatedAt = message.createdAt;
     }
   }
 

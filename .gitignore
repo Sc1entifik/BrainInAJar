@@ -5,6 +5,9 @@
 .env.production.local
 .env.local
 
+# coding environment
+.vscode
+
 # NodeJS stuff for LSP compatibility
 package.json
 package-lock.json

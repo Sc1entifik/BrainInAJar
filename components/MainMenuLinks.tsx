@@ -2,6 +2,7 @@ import { SiteMap } from "../enums/siteMap.ts";
 
 export default function MainMenuLinks() {
   const linkAndDescription = [
+    [SiteMap.API_KEY, "SET OPENAI KEY"],
     [SiteMap.CREATE_BRAIN, "CREATE A BRAIN"],
     [SiteMap.FEED_BRAIN, "FEED A BRAIN"],
     [SiteMap.TALK_TO_A_BRAIN, "TALK TO A BRAIN"],

@@ -1,5 +1,5 @@
 export enum ConversationFields {
-  ACTION = "action",
+  INTENT = "intent",
   BRAIN_NAME = "brainName",
   TURN_ID = "turnId",
   USER_MESSAGE = "userMessage",
