@@ -37,3 +37,11 @@ or
 ```bash
 CHAT_GPT_KEY=your_openai_api_key_here
 ```
+
+## Editor setup
+
+This repo uses Deno's TypeScript and import resolution, including JSX through
+`preact`. If your editor shows errors like `react/jsx-runtime` missing, enable
+the Deno language server for the workspace. In VS Code and Cursor, installing
+the official Deno extension and using the checked-in `.vscode/settings.json`
+will do that automatically.
